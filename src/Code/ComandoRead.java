@@ -17,7 +17,7 @@ class ComandoRead extends Comando {
    public int executa() {
        	
       try {
-         //Insira seu codigo
+
       }
       catch( Exception e) {
          System.out.println("ERRO: "+e);

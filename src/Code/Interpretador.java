@@ -23,7 +23,6 @@ class Interpretador {
    }
    
    public void leArquivo() {
-      
       String comandoAtual;
       int linha= 0;
       do {
@@ -48,29 +47,19 @@ class Interpretador {
       } while (!comandoAtual.equals("endp"));
    }
 
-   private void trataComandoRead(int linha) {
-
-   }
-
    private void trataComandoWriteStr(int linha) {
       String txt = "";
-      String caractere = "";
       String txt2 = "";
-      char c1;
-      while(true){
-         caractere = arq.proximaPalavra();
-         if(caractere.equals(";")){
-            break;
-         }
-         txt += caractere;
-      }
-      for (int i=0; i<txt.length(); i++) {
-         c1 = txt.charAt(i);
-         if(i != 0 && i != txt.length()-1){
-            txt2 += c1;
-         }
-      }
+      txt = LessOnlyImportant();
+      txt2 = RemoveSintaxe.OnlyImportant(txt);
       ComandoWriteStr c = new ComandoWriteStr(linha, txt2);
+      comandos.addElement(c);
+   }
+
+   private void trataComandoRead(int linha) {
+      String txt = "";
+
+      ComandoRead c = new ComandoRead(linha, txt);
       comandos.addElement(c);
    }
 
@@ -84,6 +73,19 @@ class Interpretador {
 
       ComandoWriteln c = new ComandoWriteln(lin);
       comandos.addElement(c);
+   }
+
+   private String LessOnlyImportant(){
+      String caractere = "";
+      String txt = "";
+      while(true){
+         caractere = arq.proximaPalavra();
+         if(caractere.equals(";")){
+            break;
+         }
+         txt += caractere;
+      }
+      return txt;
    }
 
    public void executa() {
