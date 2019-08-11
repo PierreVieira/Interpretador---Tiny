@@ -6,15 +6,16 @@ import lp.*;
 
 class ComandoWriteVar extends Comando {
    
-   char variavel;
+   char variavel_name;
    	
    ComandoWriteVar(int lin, String txt) {
       linha= lin;
-      variavel= txt.charAt(0);
+      variavel_name = txt.charAt(0);
    }
    
    public int executa() {
-      //Insira seu codigo
+      float valor_variavel = Variaveis.var[Variaveis.variaveis_permitidas.indexOf(variavel_name)];
+      System.out.print(valor_variavel);
       return linha+1;
    }
 }

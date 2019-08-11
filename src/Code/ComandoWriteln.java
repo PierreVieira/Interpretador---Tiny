@@ -11,7 +11,7 @@ class ComandoWriteln extends Comando {
    }
    
    public int executa() {
-      System.out.println("A");
+      System.out.println();
       return linha+1;
    }
 }

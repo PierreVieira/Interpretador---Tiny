@@ -6,22 +6,18 @@ import lp.*;
 
 class ComandoRead extends Comando {
    
-   BufferedReader teclado = new BufferedReader(new InputStreamReader(System.in));
-   char variavel;
+   Scanner teclado = new Scanner(System.in);
+   String name_variavel;
    	
-   ComandoRead(int lin, String txt) {
+   ComandoRead(int lin, String name_variavel) {
       linha= lin;
-      variavel= txt.charAt(0);
+      this.name_variavel = name_variavel;
    }
    
    public int executa() {
-       	
-      try {
-
-      }
-      catch( Exception e) {
-         System.out.println("ERRO: "+e);
-      }
+      float variavel;
+      variavel = teclado.nextFloat();
+      Variaveis.AdicionarVariavel(variavel, name_variavel);
       return linha+1;
    }
 }

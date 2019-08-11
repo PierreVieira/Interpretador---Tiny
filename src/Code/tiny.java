@@ -4,10 +4,8 @@ import java.util.*;
 import lp.*;
 
 public class tiny {
-   
    public static void main(String[] args) {
-      System.out.println("Fazendo um interpretador dahora!");
-      Interpretador inter= new Interpretador(args[0]);
+      Interpretador inter = new Interpretador(args[0]);
       if (args.length == 1) {
          inter.leArquivo();
          inter.executa();

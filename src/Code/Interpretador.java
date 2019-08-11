@@ -1,6 +1,8 @@
 package Code;
 import java.io.*;
 import java.util.*;
+
+import TrataErro.VariavelInvalidaException;
 import lp.*;
 
 class Interpretador {
@@ -40,6 +42,10 @@ class Interpretador {
             trataComandoWriteStr(linha);
             linha++;
          }
+         else if(comandoAtual.equals("writeVar")){
+             trataComandoWriteVar(linha);
+             linha++;
+         }
          else if(comandoAtual.equals("read")) {
             trataComandoRead(linha);
             linha++;
@@ -47,24 +53,47 @@ class Interpretador {
       } while (!comandoAtual.equals("endp"));
    }
 
-   private void trataComandoWriteStr(int linha) {
-      String txt = "";
-      String txt2 = "";
-      txt = LessOnlyImportant();
-      txt2 = RemoveSintaxe.OnlyImportant(txt);
-      ComandoWriteStr c = new ComandoWriteStr(linha, txt2);
+    private void trataComandoWriteStr(int linha) {
+      String conteudo = Filtro();
+      ComandoWriteStr c = new ComandoWriteStr(linha, conteudo);
       comandos.addElement(c);
    }
 
-   private void trataComandoRead(int linha) {
-      String txt = "";
+    private void trataComandoRead(int linha){
+        String conteudo = Filtro();
+        try{
+            if(Variaveis.VerificaValidadeVariavel(conteudo)){
+                ComandoRead c = new ComandoRead(linha, conteudo);
+                comandos.addElement(c);
+            }
+            else{
+                throw new VariavelInvalidaException();
+            }
+        }catch(VariavelInvalidaException e){
+            System.out.print("Erro na linha "+Integer.toString(linha+1)+": ");
+            System.out.println(e.getMessage());
+            System.exit(1);
+        }
+    }
+    private void trataComandoWriteVar(int linha) {
+        String conteudo = Filtro();
+        try{
+            if(Variaveis.VerificaValidadeVariavel(conteudo)){
+                ComandoWriteVar c = new ComandoWriteVar(linha, conteudo);
+                comandos.addElement(c);
+            }
+            else{
+                throw new VariavelInvalidaException();
+            }
+        }catch(VariavelInvalidaException e){
+            System.out.print("Erro na linha "+Integer.toString(linha+1)+": ");
+            System.out.println(e.getMessage());
+            System.exit(1);
+        }
 
-      ComandoRead c = new ComandoRead(linha, txt);
-      comandos.addElement(c);
-   }
+    }
 
    private void trataComandoEndp(int lin) {
-
       ComandoEndp c = new ComandoEndp(lin);
       comandos.addElement(c);
    }
@@ -73,6 +102,13 @@ class Interpretador {
 
       ComandoWriteln c = new ComandoWriteln(lin);
       comandos.addElement(c);
+   }
+   private String Filtro(){
+       String txt = "";
+       String txt2 = "";
+       txt = LessOnlyImportant();
+       txt2 = RemoveSintaxe.OnlyImportant(txt);
+       return txt2;
    }
 
    private String LessOnlyImportant(){
