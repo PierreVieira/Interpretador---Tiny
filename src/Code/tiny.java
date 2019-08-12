@@ -8,7 +8,7 @@ public class tiny {
       Interpretador inter = new Interpretador(args[0]);
       if (args.length == 1) {
          inter.leArquivo();
-         inter.executa();
+         inter.executa();//Eduarolindo
       }
       else if ((args.length == 2) && (args[1].equals("-l")))
          inter.listaArquivo();
