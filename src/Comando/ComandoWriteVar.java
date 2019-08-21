@@ -1,14 +1,12 @@
-package Code;
-import java.io.*;
-import java.util.*;
+package Comando;
 
-import lp.*; 
+import Variavel.Variaveis;
 
-class ComandoWriteVar extends Comando {
+public class ComandoWriteVar extends Comando {
    
    char variavel_name;
    	
-   ComandoWriteVar(int lin, String txt) {
+   public ComandoWriteVar(int lin, String txt) {
       linha= lin;
       variavel_name = txt.charAt(0);
    }

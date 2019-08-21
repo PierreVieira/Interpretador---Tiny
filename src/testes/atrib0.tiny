@@ -6,5 +6,5 @@ writeStr("Coeficiente b= ");
 read(b);
 writeStr("Coeficiente c= ");
 read(c);
-d := )b * b - 4 * a * c(;
+d := b * b - 4 * a * c;
 endp

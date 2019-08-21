@@ -1,14 +1,10 @@
-package Code;
-import java.io.*;
-import java.util.*;
+package Comando;
 
-import lp.*; 
-
-class ComandoWriteStr extends Comando {
+public class ComandoWriteStr extends Comando {
    
    String texto;
    	
-   ComandoWriteStr(int lin, String txt) {
+   public ComandoWriteStr(int lin, String txt) {
       linha= lin;
       texto= txt;
    }

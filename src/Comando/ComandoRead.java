@@ -1,15 +1,14 @@
-package Code;
-import java.io.*;
+package Comando;
 import java.util.*;
 
-import lp.*; 
+import Variavel.Variaveis;
 
-class ComandoRead extends Comando {
+public class ComandoRead extends Comando {
    
    Scanner teclado = new Scanner(System.in);
    String name_variavel;
    	
-   ComandoRead(int lin, String name_variavel) {
+   public ComandoRead(int lin, String name_variavel) {
       linha= lin;
       this.name_variavel = name_variavel;
    }

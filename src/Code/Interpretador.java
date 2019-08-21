@@ -1,14 +1,19 @@
 package Code;
-import java.io.*;
-import java.util.*;
 
-import TrataErro.VariavelInvalidaException;
+import Code.Condicao;
+import Variavel.*;
+import Comando.*;
+import Expressao.*;
+import java.util.*;
 import lp.*;
 
-class Interpretador {
+public class Interpretador {
+
     private ArquivoFonte arq;
     private Vector comandos;
+    private Stack pilha;
     private String palavraAtual;
+    private Expressao raizArvoreExpressao;
 
     public Interpretador(String nome) {
         arq= new ArquivoFonte(nome);
@@ -25,106 +30,231 @@ class Interpretador {
     }
 
     public void leArquivo() {
+
+        Stack pilhaC= new Stack();
         String comandoAtual;
         int linha= 0;
+
+        pilhaC.push(linha);
+
         do {
             comandoAtual= arq.proximaPalavra();
-            //A partir daqui ele irá escolher o comando
+
             if(comandoAtual.equals("endp")){
                 trataComandoEndp(linha);
+                linha++;
+            }
+            else if(comandoAtual.equals("writeStr")){
+                comandoAtual= arq.proximaPalavra();
+                comandoAtual= arq.proximaPalavra();
+                trataComandoWriteStr(linha, comandoAtual);
+                linha++;
+            }
+            else if(comandoAtual.equals("writeVar")){
+                comandoAtual= arq.proximaPalavra();
+                comandoAtual= arq.proximaPalavra();
+                trataComandoWriteVar(linha, comandoAtual);
                 linha++;
             }
             else if(comandoAtual.equals("writeln")){
                 trataComandoWriteln(linha);
                 linha++;
             }
-            else if(comandoAtual.equals("writeStr")){
-                trataComandoWriteStr(linha);
+            else if(comandoAtual.equals("read")){
+                comandoAtual= arq.proximaPalavra();
+                comandoAtual= arq.proximaPalavra();
+                trataComandoRead(linha, comandoAtual);
                 linha++;
             }
-            else if(comandoAtual.equals("writeVar")){
-                trataComandoWriteVar(linha);
+            else if(comandoAtual.equals("if")){
+                pilhaC.push(linha);
+                trataComandoIf(linha);
                 linha++;
             }
-            else if(comandoAtual.equals("read")) {
-                trataComandoRead(linha);
+            else if(comandoAtual.equals("else")){
+                int linhaIf = (Integer)pilhaC.pop();
+                pilhaC.push(linha);
+                trataComandoElse(linha, linhaIf);
                 linha++;
             }
+            else if(comandoAtual.equals("endif")){
+                int linhaIf = (Integer)pilhaC.pop();
+                trataComandoEndif(linha, linhaIf);;
+            }
+//            else if(comandoAtual.equals("while")){
+//                pilhaC.push(linha);
+//                trataComandoWhile(linha);
+//                linha++;
+//            }
+//            else if(comandoAtual.equals("endw")){
+//                int linhaW = (Integer)pilhaC.pop();
+//                trataComandoEndw(linha, linhaW);
+//                linha++;
+//            }
+            else if( comandoAtual.length() == 1 && comandoAtual.charAt(0) >= 'a' && comandoAtual.charAt(0) <= 'z' ){
+                //System.out.println("É um comando de atribuição");
+                String variavel = comandoAtual;
+                comandoAtual= arq.proximaPalavra();
+                trataComandoAtrib(linha, variavel);
+                linha++;
+            }
+
         } while (!comandoAtual.equals("endp"));
     }
 
-    private void trataComandoWriteStr(int linha) {
-        String conteudo = Filtro();
-        ComandoWriteStr c = new ComandoWriteStr(linha, conteudo);
-        comandos.addElement(c);
-    }
-
-    private void trataComandoRead(int linha){
-        String conteudo = Filtro();
-        try{
-            if(Variaveis.VerificaValidadeVariavel(conteudo)){
-                ComandoRead c = new ComandoRead(linha, conteudo);
-                comandos.addElement(c);
-            }
-            else{
-                throw new VariavelInvalidaException();
-            }
-        }catch(VariavelInvalidaException e){
-            System.out.print("Erro na linha "+Integer.toString(linha+1)+": ");
-            System.out.println(e.getMessage());
-            System.exit(1);
-        }
-    }
-    private void trataComandoWriteVar(int linha) {
-        String conteudo = Filtro();
-        try{
-            if(Variaveis.VerificaValidadeVariavel(conteudo)){
-                ComandoWriteVar c = new ComandoWriteVar(linha, conteudo);
-                comandos.addElement(c);
-            }
-            else{
-                throw new VariavelInvalidaException();
-            }
-        }catch(VariavelInvalidaException e){
-            System.out.print("Erro na linha "+Integer.toString(linha+1)+": ");
-            System.out.println(e.getMessage());
-            System.exit(1);
-        }
-
-    }
-
     private void trataComandoEndp(int lin) {
-        ComandoEndp c = new ComandoEndp(lin);
+
+        ComandoEndp c= new ComandoEndp(lin);
         comandos.addElement(c);
     }
+
+    private void trataComandoWriteStr(int lin, String txt) {
+
+        ComandoWriteStr c= new ComandoWriteStr(lin, txt);
+        comandos.addElement(c);
+    }
+
+    private void trataComandoWriteVar(int lin, String txt) {
+
+        ComandoWriteVar c= new ComandoWriteVar(lin, txt);
+        comandos.addElement(c);
+    }
+
 
     private void trataComandoWriteln(int lin) {
 
-        ComandoWriteln c = new ComandoWriteln(lin);
+        ComandoWriteln c= new ComandoWriteln(lin);
         comandos.addElement(c);
     }
-    private String Filtro(){
-        String txt = "";
-        String txt2 = "";
-        txt = LessOnlyImportant();
-        txt2 = RemoveSintaxe.OnlyImportant(txt);
-        return txt2;
+
+
+    private void trataComandoRead(int lin, String txt) {
+
+        ComandoRead c= new ComandoRead(lin, txt);
+        comandos.addElement(c);
     }
 
-    private String LessOnlyImportant(){
-        String caractere = "";
-        String txt = "";
-        while(true){
-            caractere = arq.proximaPalavra();
-            if(caractere.equals(";")){
-                break;
-            }
-            txt += caractere;
-        }
-        return txt;
+
+    private void trataComandoIf(int lin) {
+        trataExpressao();
+        ComandoIf c= new ComandoIf(lin, raizArvoreExpressao);
+        comandos.addElement(c);
     }
+
+
+    private void trataComandoElse(int lin, int linIf) {
+        ComandoIf cmd= (ComandoIf) comandos.elementAt(linIf);
+        cmd.setLinhaEnd(lin+1);
+        ComandoElse c= new ComandoElse(lin);
+        comandos.addElement(c);
+    }
+
+
+    private void trataComandoEndif(int lin, int linIfElse) {
+        Condicao cmd= (Condicao) comandos.elementAt(linIfElse);
+        cmd.setLinhaEnd(lin);
+    }
+
+
+    private void trataComandoAtrib(int lin, String txt) {
+        char var= txt.charAt(0);
+        trataExpressao();
+        ComandoAtrib c= new ComandoAtrib(lin, var, raizArvoreExpressao);
+        comandos.addElement(c);
+    }
+
+
+    private void trataExpressao() {
+        palavraAtual= arq.proximaPalavra();
+        pilha= new Stack();
+        expressaoLogica();
+        raizArvoreExpressao= (Expressao) pilha.pop();
+    }
+
+    private void expressaoLogica() {
+        expressaoComparativa();
+        while ( palavraAtual.equals("and") || palavraAtual.equals("or") || palavraAtual.equals("not") ) {
+            String op= palavraAtual;
+            palavraAtual= arq.proximaPalavra();
+            expressaoComparativa();
+            Object exp1= pilha.pop();
+            Object exp2= pilha.pop();
+            pilha.push(new ExpLogica(op,exp1,exp2));
+        }
+    }
+
+    private void expressaoComparativa() {
+        expressao();
+        while ( palavraAtual.equals("<") || palavraAtual.equals(">") || palavraAtual.equals(">=") ||
+                palavraAtual.equals("<=") || palavraAtual.equals("<>") || palavraAtual.equals("=")  ) {
+            String op= palavraAtual;
+            palavraAtual= arq.proximaPalavra();
+            expressao();
+            Object exp1= pilha.pop();
+            Object exp2= pilha.pop();
+            pilha.push(new ExpComparativa(op,exp1,exp2));
+        }
+    }
+
+    private void expressao() {
+        termo();
+        while ( palavraAtual.equals("+") || palavraAtual.equals("-") ) {
+            String op= palavraAtual;
+            palavraAtual= arq.proximaPalavra();
+            termo();
+            Object exp1= pilha.pop();
+            Object exp2= pilha.pop();
+            pilha.push(new ExpBinaria(op,exp1,exp2));
+        }
+    }
+
+    private void termo() {
+        fator();
+        while ( palavraAtual.equals("*") || palavraAtual.equals("/") ) {
+            String op= palavraAtual;
+            palavraAtual= arq.proximaPalavra();
+            fator();
+            Object exp1= pilha.pop();
+            Object exp2= pilha.pop();
+            pilha.push(new ExpBinaria(op,exp1,exp2));
+        }
+    }
+
+
+    private void fator() {
+        if ( palavraAtual.equals("sqrt") ) {
+            palavraAtual= arq.proximaPalavra();
+            palavraAtual= arq.proximaPalavra();
+            pilha.push(new ExpSqrt( palavraAtual ));
+            palavraAtual= arq.proximaPalavra();
+            palavraAtual= arq.proximaPalavra();
+        }
+
+        else if ( palavraAtual.charAt(0) >= '0' && palavraAtual.charAt(0) <= '9'  ) {
+            pilha.push(new ExpConstante( Double.parseDouble(palavraAtual) ));
+            palavraAtual= arq.proximaPalavra();
+        }
+
+        else if ( palavraAtual.charAt(0) >= 'a' && palavraAtual.charAt(0) <= 'z'  ) {
+            pilha.push(new ExpVariavel( palavraAtual.charAt(0) ));
+            palavraAtual= arq.proximaPalavra();
+        }
+
+        else if ( palavraAtual.equals("(") ) {
+            palavraAtual= arq.proximaPalavra();
+            expressaoLogica();
+
+            if ( palavraAtual.equals(")") ) {
+                palavraAtual= arq.proximaPalavra();
+            }
+
+        }
+
+    }
+
 
     public void executa() {
+
         Comando cmd;
         int pc= 0;
         do {
@@ -132,4 +262,5 @@ class Interpretador {
             pc= cmd.executa();
         } while (pc != -1);
     }
+
 }

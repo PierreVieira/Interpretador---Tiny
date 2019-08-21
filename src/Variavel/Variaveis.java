@@ -1,8 +1,8 @@
-package Code;
+package Variavel;
 public class Variaveis{
    public static float[] var = new float[26];
-   protected static String variaveis_permitidas = "abcdefghijklmnopqrstuvwxyz";
-   protected static boolean VerificaValidadeVariavel(String variavel){
+   public static String variaveis_permitidas = "abcdefghijklmnopqrstuvwxyz";
+   public static boolean VerificaValidadeVariavel(String variavel){
       if(variavel.length() != 1) {
          return false;
       }
@@ -11,7 +11,7 @@ public class Variaveis{
       }
       return false;
    }
-   protected static void AdicionarVariavel(float valor, String name){
+   public static void AdicionarVariavel(float valor, String name){
       int posicao = variaveis_permitidas.indexOf(name);
       var[posicao] = valor;
    }
