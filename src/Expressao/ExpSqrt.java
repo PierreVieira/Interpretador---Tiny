@@ -8,15 +8,15 @@ public class ExpSqrt extends Expressao{
 
     public ExpSqrt(String sqrt) {
         this.sqrt= sqrt;
+        System.out.println(this.sqrt);
     }
 
     public double avalia() {
-        double valor;
-
-        //insira seu codigo aqui
-
-        //return valor; só pra compilar
-        return 0;
+        int posicao_variavel = Variaveis.PosicaoDaVariavel(this.sqrt);
+        double raiz, oq_vai_pra_raiz;
+        oq_vai_pra_raiz = Variaveis.var[posicao_variavel];
+        raiz = Math.sqrt(oq_vai_pra_raiz);
+        //System.out.println("Your number was " + raiz);
+        return raiz;
     }
-
 }

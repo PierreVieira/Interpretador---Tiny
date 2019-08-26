@@ -254,7 +254,6 @@ public class Interpretador {
 
 
     public void executa() {
-
         Comando cmd;
         int pc= 0;
         do {

@@ -15,6 +15,7 @@ public class ComandoAtrib extends Comando {
     }
 
     public int executa() {
+        exp.avalia();
         return linha+1;
     }
 }

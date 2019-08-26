@@ -16,7 +16,6 @@ public class ExpBinaria extends Expressao{
 
 
     public double avalia() {
-        //insira seu codigo aqui
         return 0; //só pra compilar
     }
 }

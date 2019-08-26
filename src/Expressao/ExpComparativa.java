@@ -17,20 +17,29 @@ public class ExpComparativa extends Expressao{
     }
 
     public double avalia() {
-
         boolean v = false;
         double valor = FALSE;
-
         opr1 = (Expressao) exp1;
         opr2 = (Expressao) exp2;
+        switch(this.op){
+            case "<":
+                v = opr1 > opr2;
+            case ">":
 
-        //insira seu codigo aqui
+            case "<=":
+
+            case ">=":
+
+            case "<>":
+
+            case "=":
+
+        }
+
 
         if( v == true ){
             valor = TRUE;
         }
-
         return valor;
-
     }
 }
