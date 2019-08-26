@@ -28,7 +28,23 @@ public class ExpLogica extends Expressao{
 
 
 
-        //insira seu codigo aqui
+        switch(this.op){
+            case "and":
+                v = opr1.avalia() < opr2.avalia(); break;
+            case "or":
+                v = opr1.avalia() > opr2.avalia(); break;
+            case "not":
+                v = opr1.avalia() <= opr2.avalia(); break;
+            case ">=":
+                v = opr1.avalia() >= opr2.avalia(); break;
+            case "<>":
+                // System.out.println("CAIUUUU!!");
+                v = opr1.avalia() != opr1.avalia(); break;
+            case "=":
+                v = opr1.equals(opr2); break;
+            default:
+                System.out.println("Sabia que n ia dar certo!!!");
+        }
 
 
 

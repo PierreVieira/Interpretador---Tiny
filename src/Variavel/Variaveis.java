@@ -1,6 +1,6 @@
 package Variavel;
 public class Variaveis{
-   public static float[] var = new float[26];
+   public static double[] var = new double[26];
    public static String variaveis_permitidas = "abcdefghijklmnopqrstuvwxyz";
 //   public static boolean VerificaValidadeVariavel(String variavel){
 //      if(variavel.length() != 1) {
@@ -11,7 +11,7 @@ public class Variaveis{
 //      }
 //      return false;
 //   }
-   public static void AdicionarVariavel(float valor, String name){
+   public static void AdicionarVariavel(double valor, String name){
       int posicao = variaveis_permitidas.indexOf(name);
       var[posicao] = valor;
    }

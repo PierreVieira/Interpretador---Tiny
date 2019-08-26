@@ -12,7 +12,7 @@ public class ComandoWriteVar extends Comando {
    }
    
    public int executa() {
-      float valor_variavel = Variaveis.var[Variaveis.variaveis_permitidas.indexOf(variavel_name)];
+      double valor_variavel = Variaveis.var[Variaveis.variaveis_permitidas.indexOf(variavel_name)];
       System.out.print(valor_variavel);
       return linha+1;
    }

@@ -9,6 +9,7 @@ public class ExpConstante extends Expressao{
     }
 
     public double avalia() {
+
         return valor;
     }
 

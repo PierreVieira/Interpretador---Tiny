@@ -15,7 +15,9 @@ public class ComandoAtrib extends Comando {
     }
 
     public int executa() {
-        exp.avalia();
+        String s = "";
+        s += variavel;
+        Variaveis.AdicionarVariavel(exp.avalia(), s);
         return linha+1;
     }
 }
