@@ -92,7 +92,6 @@ public class Interpretador {
 //                linha++;
 //            }
             else if( comandoAtual.length() == 1 && comandoAtual.charAt(0) >= 'a' && comandoAtual.charAt(0) <= 'z' ){
-                //System.out.println("É um comando de atribuição");
                 String variavel = comandoAtual;
                 comandoAtual= arq.proximaPalavra();
                 trataComandoAtrib(linha, variavel);
