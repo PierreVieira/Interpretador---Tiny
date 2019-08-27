@@ -17,31 +17,29 @@ public class ExpLogica extends Expressao{
     }
 
     public double avalia() {
-
         boolean v = false,
                 opr1B = false,
                 opr2B = false;
         double valor= FALSE;
-
-        opr1 = (Expressao) exp1;
+    //Tive que fazer uma gambiarra mandando o 1 pro 2 e o 2 pro 1 pra poder funcionar
         opr2 = (Expressao) exp2;
-
-
-
+        opr1 = (Expressao) exp1;
+        if(opr1.avalia() == 1){
+            opr1B = true;
+        }
+        if(opr2.avalia() == 1){
+            opr2B = true;
+        }
         switch(this.op){
             case "and":
-                v = opr1.avalia() < opr2.avalia(); break;
+                v = opr1B && opr2B; break;
             case "or":
-                v = opr1.avalia() > opr2.avalia(); break;
+                v = opr1B || opr2B; break;
             case "not":
-                v = opr1.avalia() <= opr2.avalia(); break;
-            case ">=":
-                v = opr1.avalia() >= opr2.avalia(); break;
-            case "<>":
-                // System.out.println("CAIUUUU!!");
-                v = opr1.avalia() != opr1.avalia(); break;
+                System.out.println("estou no not");
+                v = !(opr1B); break;
             case "=":
-                v = opr1.equals(opr2); break;
+                v = opr1B == opr2B; break;
             default:
                 System.out.println("Sabia que n ia dar certo!!!");
         }
