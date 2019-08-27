@@ -19,10 +19,9 @@ public class ExpComparativa extends Expressao{
     public double avalia() {
         boolean v = false;
         double valor = FALSE;
-        opr1 = (Expressao) exp1;
-        opr2 = (Expressao) exp2;
-       // System.out.println("\n1 = "+opr1.toString());
-       // System.out.println("2 = "+opr2.toString());
+        //Tive que fazer uma gambiarra mandando o 1 pro 2 e o 2 pro 1 pra poder funcionar
+        opr2 = (Expressao) exp1;
+        opr1 = (Expressao) exp2;
         switch(this.op){
             case "<":
                 v = opr1.avalia() < opr2.avalia(); break;

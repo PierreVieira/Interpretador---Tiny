@@ -97,7 +97,6 @@ public class Interpretador {
                 trataComandoAtrib(linha, variavel);
                 linha++;
             }
-
         } while (!comandoAtual.equals("endp"));
     }
 
@@ -165,7 +164,6 @@ public class Interpretador {
 
     private void trataExpressao() {
         palavraAtual= arq.proximaPalavra();
-        System.out.println("It's equals = "+palavraAtual);
         pilha= new Stack();
         expressaoLogica();
         raizArvoreExpressao= (Expressao) pilha.pop();

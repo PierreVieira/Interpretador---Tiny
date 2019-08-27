@@ -16,8 +16,9 @@ public class ExpBinaria extends Expressao{
 
     public double avalia() {
         double v;
-        cmd1 = (Expressao) exp1;
-        cmd2 = (Expressao) exp2;
+        //Tive que fazer uma gambiarra mandando o 1 pro 2 e o 2 pro 1 pra poder funcionar
+        cmd2 = (Expressao) exp1;
+        cmd1 = (Expressao) exp2;
         switch(this.op){
             case "+":
                 v = cmd1.avalia() + cmd2.avalia(); break;
@@ -31,6 +32,7 @@ public class ExpBinaria extends Expressao{
                 v = 8789798979846.546846;
                 System.out.println("Sabia que n ia dar certo!!!");
         }
+        //System.out.println(cmd1.avalia()+" "+" "+this.op+" "+cmd2.avalia()+" = "+v);
         return v; //só pra compilar
     }
 }

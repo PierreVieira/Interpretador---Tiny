@@ -11,7 +11,9 @@ public class ExpVariavel extends Expressao{
     }
 
     public double avalia() {
-        return Variaveis.var[ variavel - 97 ];
+        String s = "";
+        s += this.variavel;
+        return Variaveis.var[Variaveis.PosicaoDaVariavel(s)];
     }
 
 }

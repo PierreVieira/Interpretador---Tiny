@@ -10,9 +10,12 @@ public class ComandoIf extends Comando implements Condicao {
     Expressao exp;
 
     public ComandoIf(int lin, Expressao raizArvoreExpressao) {
+        this.linhaEnd = lin;
+        this.exp = raizArvoreExpressao;
     }
 
     public void setLinhaEnd(int lin){
+
     }
 
     public int executa() {
