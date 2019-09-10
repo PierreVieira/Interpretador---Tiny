@@ -1,7 +1,5 @@
 package Code;
 
-import Code.Condicao;
-import Variavel.*;
 import Comando.*;
 import Expressao.*;
 import java.util.*;

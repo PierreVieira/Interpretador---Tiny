@@ -1,6 +1,6 @@
 writeStr  ("Digite o valor de x");
-read (a);
+read (x);
 writeln;
 writeStr ("O valor digitado foi: ");
-writeVar (d);
+writeVar (x);
 endp

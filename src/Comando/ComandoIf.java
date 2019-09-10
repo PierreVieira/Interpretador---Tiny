@@ -1,8 +1,7 @@
 package Comando;
 
 import Code.Condicao;
-import Variavel.*;
-import Expressao.*;
+import Expressao.Expressao;
 
 public class ComandoIf extends Comando implements Condicao {
 
