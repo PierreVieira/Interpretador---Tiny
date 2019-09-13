@@ -5,7 +5,7 @@ if n < 0 then
 else    
   a:= 1;
   while  a <= n do
-    writeVar(a);
+     writeVar(a);
 	 writeln;
 	 writeStr("i's:");
 	 i:=1;

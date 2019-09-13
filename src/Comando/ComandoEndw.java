@@ -5,10 +5,11 @@ public class ComandoEndw extends Comando {
     int linhaW;
 
     public ComandoEndw(int lin, int linW) {
-
+        this.linhaW = linW;
+        this.linha = lin;
     }
 
     public int executa() {
-        return 0; // só pra compilar
+        return this.linhaW; // só pra compilar
     }
 }

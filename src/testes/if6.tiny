@@ -1,4 +1,5 @@
 writeStr("Informe o tamanho dos lados do triangulo");
+writeln;
 writeStr("Lado 1= ");
 read(a);
 writeStr("Lado 2= ");

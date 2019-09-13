@@ -1,5 +1,6 @@
 package Code;
 
+import Variavel.*;
 import Comando.*;
 import Expressao.*;
 import java.util.*;
@@ -79,14 +80,28 @@ public class Interpretador {
                 int linhaIf = (Integer)pilhaC.pop();
                 trataComandoEndif(linha, linhaIf);;
             }
-//            else if(comandoAtual.equals("while")){
-//                pilhaC.push(linha);
-//                trataComandoWhile(linha);
-//                linha++;
-//            }
-//            else if(comandoAtual.equals("endw")){
-//                int linhaW = (Integer)pilhaC.pop();
-//                trataComandoEndw(linha, linhaW);
+            else if(comandoAtual.equals("while")){
+                pilhaC.push(linha);
+                trataComandoWhile(linha);
+                linha++;
+            }
+            else if(comandoAtual.equals("endw")){
+                int linhaW = (Integer)pilhaC.pop();
+                trataComandoEndw(linha, linhaW);
+                linha++;
+            }
+            else if(comandoAtual.equals("for")){
+                pilhaC.push(linha);
+                String variavel= arq.proximaPalavra();
+                comandoAtual= arq.proximaPalavra();
+                String varValor= arq.proximaPalavra();
+                String tipo= arq.proximaPalavra();
+                trataComandoFor(linha, variavel, varValor, tipo);
+                linha++;
+            }
+//            else if(comandoAtual.equals("endfor")){
+//                int linhaFor = (Integer)pilhaC.pop();
+//                trataComandoEndfor(linha, linhaFor);
 //                linha++;
 //            }
             else if( comandoAtual.length() == 1 && comandoAtual.charAt(0) >= 'a' && comandoAtual.charAt(0) <= 'z' ){
@@ -95,6 +110,7 @@ public class Interpretador {
                 trataComandoAtrib(linha, variavel);
                 linha++;
             }
+
         } while (!comandoAtual.equals("endp"));
     }
 
@@ -152,6 +168,35 @@ public class Interpretador {
     }
 
 
+    private void trataComandoWhile(int lin) {
+        trataExpressao();
+        ComandoWhile c= new ComandoWhile(lin, raizArvoreExpressao);
+        comandos.addElement(c);
+    }
+
+
+    private void trataComandoEndw(int lin, int linW) {
+        ComandoWhile cmd= (ComandoWhile) comandos.elementAt(linW);
+        cmd.setLinhaEnd(lin);
+        ComandoEndw c= new ComandoEndw(lin, linW);
+        comandos.addElement(c);
+    }
+
+
+    private void trataComandoFor(int lin, String var, String varValor, String tipo) {
+        trataExpressao();
+        ComandoFor c= new ComandoFor(lin, var, varValor, tipo, raizArvoreExpressao);
+        comandos.addElement(c);
+    }
+
+//    private void trataComandoEndfor(int lin, int linFor) {
+//        ComandoFor cmd= (ComandoFor) comandos.elementAt(linFor);
+//        cmd.setLinhaEnd(lin);
+//        ComandoEndfor c= new ComandoEndfor(lin, linFor, cmd.getVar() , cmd.getTipo());
+//        comandos.addElement(c);
+//    }
+
+
     private void trataComandoAtrib(int lin, String txt) {
         char var= txt.charAt(0);
         trataExpressao();
@@ -199,6 +244,9 @@ public class Interpretador {
             palavraAtual= arq.proximaPalavra();
             termo();
             Object exp1= pilha.pop();
+            if( pilha.empty() ){
+                pilha.push(new ExpConstante(0.0));
+            }
             Object exp2= pilha.pop();
             pilha.push(new ExpBinaria(op,exp1,exp2));
         }
@@ -250,6 +298,7 @@ public class Interpretador {
 
 
     public void executa() {
+
         Comando cmd;
         int pc= 0;
         do {

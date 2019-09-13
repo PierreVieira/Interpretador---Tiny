@@ -1,0 +1,21 @@
+writeStr("Entre com o numero de linhas: ");
+read(n);
+if n < 0 then
+   writeStr("numero de linhas menor que 0");
+else
+    writeStr("Here");
+    writeln;
+  a:= 1;
+  i:= 0;
+  writeVar(a);
+  writeln;
+  while a < n do
+     a:= a + 1;
+     writeVar(a);
+       writeln;
+  endw
+       writeStr("Here3");
+endif
+writeln;
+writeStr("Encerrei o programa");
+endp
