@@ -99,11 +99,11 @@ public class Interpretador {
                 trataComandoFor(linha, variavel, varValor, tipo);
                 linha++;
             }
-//            else if(comandoAtual.equals("endfor")){
-//                int linhaFor = (Integer)pilhaC.pop();
-//                trataComandoEndfor(linha, linhaFor);
-//                linha++;
-//            }
+            else if(comandoAtual.equals("endfor")){
+                int linhaFor = (Integer)pilhaC.pop();
+                trataComandoEndfor(linha, linhaFor);
+                linha++;
+            }
             else if( comandoAtual.length() == 1 && comandoAtual.charAt(0) >= 'a' && comandoAtual.charAt(0) <= 'z' ){
                 String variavel = comandoAtual;
                 comandoAtual= arq.proximaPalavra();
@@ -189,12 +189,12 @@ public class Interpretador {
         comandos.addElement(c);
     }
 
-//    private void trataComandoEndfor(int lin, int linFor) {
-//        ComandoFor cmd= (ComandoFor) comandos.elementAt(linFor);
-//        cmd.setLinhaEnd(lin);
-//        ComandoEndfor c= new ComandoEndfor(lin, linFor, cmd.getVar() , cmd.getTipo());
-//        comandos.addElement(c);
-//    }
+    private void trataComandoEndfor(int lin, int linFor) {
+        ComandoFor cmd= (ComandoFor) comandos.elementAt(linFor);
+        cmd.setLinhaEnd(lin);
+        ComandoEndfor c= new ComandoEndfor(lin, linFor, cmd.getVar() , cmd.getTipo());
+        comandos.addElement(c);
+    }
 
 
     private void trataComandoAtrib(int lin, String txt) {

@@ -10,6 +10,6 @@ public class ComandoEndw extends Comando {
     }
 
     public int executa() {
-        return this.linhaW; // só pra compilar
+        return this.linhaW;
     }
 }
