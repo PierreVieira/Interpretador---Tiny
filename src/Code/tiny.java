@@ -4,7 +4,7 @@ import java.util.*;
 import lp.*;
 //Antônio Pierre Martins Vieira
 //Eduardo Vinícius Silva de Lima
-
+//Thiago Danilo Souza Pereira
 public class tiny {
    public static void main(String[] args) {
       Interpretador inter = new Interpretador(args[0]);
