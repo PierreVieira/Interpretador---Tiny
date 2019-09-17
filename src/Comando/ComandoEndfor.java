@@ -1,6 +1,6 @@
 package Comando;
 
-import Variavel.*;
+import Variavel.Variaveis;
 
 public class ComandoEndfor extends Comando {
 
@@ -16,6 +16,13 @@ public class ComandoEndfor extends Comando {
     }
 
     public int executa() {
+        String s = ""+this.variavel;
+        if(this.tipo.equals("to")){
+            Variaveis.var[Variaveis.PosicaoDaVariavel(s)]++;
+        }
+        else{
+            Variaveis.var[Variaveis.PosicaoDaVariavel(s)]--;
+        }
         return this.linhaFor;
     }
 }

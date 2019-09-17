@@ -1,11 +1,12 @@
 package Comando;
 
 import Expressao.Expressao;
+import Variavel.Variaveis;
 
 public class ComandoFor extends Comando{
 
     int linhaEnd;
-    int varValor;
+    String varValor;
     double limite;
     char variavel;
     String tipo;
@@ -16,10 +17,9 @@ public class ComandoFor extends Comando{
     public ComandoFor(int lin, String var, String vValor, String tipo, Expressao raizArvoreExpressao) {
         this.linha = lin;
         this.variavel = var.charAt(0);
-        this.varValor = Integer.parseInt(vValor);
+        this.varValor = vValor;
         this.tipo = tipo;
         this.exp = raizArvoreExpressao;
-        System.out.printf("linha: %d\nvariavel: %s\nvarValor: %s\ntipo: %s\n", this.linha+1, this.variavel, this.varValor, this.tipo);
     }
 
 
@@ -36,10 +36,29 @@ public class ComandoFor extends Comando{
     }
 
     public int executa() {
-        double v = exp.avalia();
-        if(v == 1){
-            return this.linha+1;
+        this.limite = exp.avalia();
+        String s = ""+this.variavel;
+        if(inicio){
+            Variaveis.var[Variaveis.PosicaoDaVariavel(s)] = Double.parseDouble(varValor);
+            this.inicio = false;
         }
-        return linhaEnd+1;
+            if (tipo.equals("to") ) {
+                if (Variaveis.var[Variaveis.PosicaoDaVariavel(s)] <= this.limite) {
+                    return this.linha+1;
+                }
+                else{
+                    this.inicio = true;
+                }
+                    return this.linhaEnd + 1;
+            }
+            else {
+                if (Variaveis.var[Variaveis.PosicaoDaVariavel(s)] >= this.limite) {
+                    return this.linha+1;
+                }
+                else{
+                    this.inicio = true;
+                }
+                return this.linhaEnd + 1;
+            }
     }
 }
