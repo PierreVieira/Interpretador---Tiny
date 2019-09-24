@@ -1,7 +1,7 @@
 package Comando;
 
-import Variavel.*;
-import Expressao.*;
+import Expressao.Expressao;
+import Variavel.Memoria;
 
 public class ComandoAtrib extends Comando {
 
@@ -14,10 +14,10 @@ public class ComandoAtrib extends Comando {
         this.linha = lin;
     }
 
-    public int executa() {
+    public int executa(Memoria local, Memoria global) {
         String s = "";
         s += variavel;
-        Variaveis.AdicionarVariavel(exp.avalia(), s);
+        //Variaveis.AdicionarVariavel(exp.avalia(), s);
         return linha+1;
     }
 }

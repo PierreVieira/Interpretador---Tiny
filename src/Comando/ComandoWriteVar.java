@@ -1,6 +1,6 @@
 package Comando;
 
-import Variavel.Variaveis;
+import Variavel.Memoria;
 
 public class ComandoWriteVar extends Comando {
    
@@ -11,8 +11,8 @@ public class ComandoWriteVar extends Comando {
       variavel_name = txt.charAt(0);
    }
    
-   public int executa() {
-      double valor_variavel = Variaveis.var[Variaveis.variaveis_permitidas.indexOf(variavel_name)];
+   public int executa(Memoria local, Memoria global) {
+      //double valor_variavel = Variaveis.var[Variaveis.variaveis_permitidas.indexOf(variavel_name)];
       System.out.print(valor_variavel);
       return linha+1;
    }

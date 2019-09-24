@@ -2,6 +2,7 @@ package Comando;
 
 import Code.Condicao;
 import Expressao.Expressao;
+import Variavel.Memoria;
 
 public class ComandoIf extends Comando implements Condicao {
 
@@ -17,7 +18,7 @@ public class ComandoIf extends Comando implements Condicao {
         this.linhaEnd = lin;
     }
 
-    public int executa() {
+    public int executa(Memoria local, Memoria global) {
     double v = exp.avalia();
         if(v == 1){
            return linha+1;

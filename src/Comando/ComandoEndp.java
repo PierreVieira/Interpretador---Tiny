@@ -1,11 +1,15 @@
 package Comando;
+
+import Variavel.Memoria;
+
 public class ComandoEndp extends Comando {
    
    public ComandoEndp(int lin) {
       linha = lin;
    }
-   
-   public int executa() {
-      return -1;
+
+
+   public int executa(Memoria local, Memoria global) {
+      return 0;
    }
 }

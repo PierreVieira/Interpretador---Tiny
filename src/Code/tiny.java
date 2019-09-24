@@ -1,18 +1,9 @@
 package Code;
-import java.io.*;
-import java.util.*;
-import lp.*;
-//Antônio Pierre Martins Vieira
-//Eduardo Vinícius Silva de Lima
-//Thiago Danilo Souza Pereira
+
 public class tiny {
    public static void main(String[] args) {
-      Interpretador inter = new Interpretador(args[0]);
-      if (args.length == 1) {
-         inter.leArquivo();
-         inter.executa();
-      }
-      else if ((args.length == 2) && (args[1].equals("-l")))
-         inter.listaArquivo();
+      Interpretador inter= new Interpretador(args[0]);
+      inter.leArquivo();
+      inter.executa();
    }
 }

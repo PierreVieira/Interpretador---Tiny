@@ -1,5 +1,7 @@
 package Comando;
 
+import Variavel.Memoria;
+
 public class ComandoWriteStr extends Comando {
    
    String texto;
@@ -9,7 +11,7 @@ public class ComandoWriteStr extends Comando {
       texto= txt;
    }
    
-   public int executa() {
+   public int executa(Memoria local, Memoria global) {
       System.out.print(this.texto);
       return linha+1;
    }

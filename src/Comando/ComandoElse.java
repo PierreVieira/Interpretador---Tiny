@@ -1,6 +1,7 @@
 package Comando;
 
 import Code.Condicao;
+import Variavel.Memoria;
 
 public class ComandoElse extends Comando implements Condicao {
 
@@ -14,7 +15,7 @@ public class ComandoElse extends Comando implements Condicao {
         this.linhaEnd =  lin;
     }
 
-    public int executa() {
+    public int executa(Memoria local, Memoria global) {
         return linhaEnd;//só pra compilar
     }
 }

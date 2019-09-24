@@ -1,6 +1,6 @@
 package Comando;
 
-import Variavel.Variaveis;
+import Variavel.Memoria;
 
 public class ComandoEndfor extends Comando {
 
@@ -15,13 +15,13 @@ public class ComandoEndfor extends Comando {
         this.tipo = tipo;
     }
 
-    public int executa() {
+    public int executa(Memoria local, Memoria global) {
         String s = ""+this.variavel;
         if(this.tipo.equals("to")){
-            Variaveis.var[Variaveis.PosicaoDaVariavel(s)]++;
+            //Variaveis.var[Variaveis.PosicaoDaVariavel(s)]++;
         }
         else{
-            Variaveis.var[Variaveis.PosicaoDaVariavel(s)]--;
+            //Variaveis.var[Variaveis.PosicaoDaVariavel(s)]--;
         }
         return this.linhaFor;
     }

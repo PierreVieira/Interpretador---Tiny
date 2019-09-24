@@ -1,7 +1,7 @@
 package Comando;
-import java.util.*;
+import Variavel.Memoria;
 
-import Variavel.Variaveis;
+import java.util.*;
 
 public class ComandoRead extends Comando {
    
@@ -13,10 +13,9 @@ public class ComandoRead extends Comando {
       this.name_variavel = name_variavel;
    }
    
-   public int executa() {
+   public int executa(Memoria local, Memoria global) {
       float variavel;
       variavel = teclado.nextFloat();
-      Variaveis.AdicionarVariavel(variavel, name_variavel);
       return linha+1;
    }
 }

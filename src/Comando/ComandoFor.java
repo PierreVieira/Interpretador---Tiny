@@ -1,7 +1,7 @@
 package Comando;
 
 import Expressao.Expressao;
-import Variavel.Variaveis;
+import Variavel.Memoria;
 
 public class ComandoFor extends Comando{
 
@@ -35,15 +35,15 @@ public class ComandoFor extends Comando{
         this.linhaEnd = lin;
     }
 
-    public int executa() {
+    public int executa(Memoria local, Memoria global) {
         this.limite = exp.avalia();
         String s = ""+this.variavel;
         if(inicio){
-            Variaveis.var[Variaveis.PosicaoDaVariavel(s)] = Double.parseDouble(varValor);
+            //Variaveis.var[Variaveis.PosicaoDaVariavel(s)] = Double.parseDouble(varValor);
             this.inicio = false;
         }
             if (tipo.equals("to") ) {
-                if (Variaveis.var[Variaveis.PosicaoDaVariavel(s)] <= this.limite) {
+                if (/*Variaveis.var[Variaveis.PosicaoDaVariavel(s)] <= this.limite*/) {
                     return this.linha+1;
                 }
                 else{
@@ -52,7 +52,7 @@ public class ComandoFor extends Comando{
                     return this.linhaEnd + 1;
             }
             else {
-                if (Variaveis.var[Variaveis.PosicaoDaVariavel(s)] >= this.limite) {
+                if (/*Variaveis.var[Variaveis.PosicaoDaVariavel(s)] >= this.limite*/) {
                     return this.linha+1;
                 }
                 else{

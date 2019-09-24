@@ -1,6 +1,7 @@
 package Comando;
 
 import Expressao.Expressao;
+import Variavel.Memoria;
 
 public class ComandoWhile extends Comando{
 
@@ -15,7 +16,7 @@ public class ComandoWhile extends Comando{
         this.linhaEnd = lin;
     }
 
-    public int executa() {
+    public int executa(Memoria local, Memoria global) {
         double v = exp.avalia();
         if(v == 1){
             return this.linha+1;
