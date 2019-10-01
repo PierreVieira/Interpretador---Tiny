@@ -12,8 +12,11 @@ public class ComandoWriteVar extends Comando {
    }
    
    public int executa(Memoria local, Memoria global) {
-      //double valor_variavel = Variaveis.var[Variaveis.variaveis_permitidas.indexOf(variavel_name)];
-      System.out.print(valor_variavel);
+      if(local.var[variavel_name - 97] != -1){
+         System.out.println(local.var[variavel_name - 97]);
+      }else if(global.var[variavel_name -97] != -1){
+         System.out.println(global.var[variavel_name - 97]);
+      }
       return linha+1;
    }
 }

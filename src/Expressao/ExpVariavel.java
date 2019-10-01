@@ -13,7 +13,8 @@ public class ExpVariavel extends Expressao{
     public double avalia() {
         String s = "";
         s += this.variavel;
-        return Variaveis.var[Variaveis.PosicaoDaVariavel(s)];
+        //return Variaveis.var[Variaveis.PosicaoDaVariavel(s)];
+        return 1;
     }
 
 }

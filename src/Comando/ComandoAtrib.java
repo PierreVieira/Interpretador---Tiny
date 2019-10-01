@@ -15,9 +15,11 @@ public class ComandoAtrib extends Comando {
     }
 
     public int executa(Memoria local, Memoria global) {
-        String s = "";
-        s += variavel;
-        //Variaveis.AdicionarVariavel(exp.avalia(), s);
+        if(local.var[variavel - 97] != -1){
+            local.var[variavel - 97] = this.exp.avalia();
+        }else if(global.var[variavel -97] != -1){
+            global.var[variavel - 97] = this.exp.avalia();
+        }
         return linha+1;
     }
 }

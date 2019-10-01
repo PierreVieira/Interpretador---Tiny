@@ -16,6 +16,12 @@ public class ComandoRead extends Comando {
    public int executa(Memoria local, Memoria global) {
       float variavel;
       variavel = teclado.nextFloat();
+      char pos_char = this.name_variavel.charAt(0);
+      if(local.var[pos_char - 97] != -1){
+         local.var[pos_char - 97] = variavel;
+      }else if(global.var[pos_char -97] != -1){
+         global.var[pos_char - 97] = variavel;
+      }
       return linha+1;
    }
 }

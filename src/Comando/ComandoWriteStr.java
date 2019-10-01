@@ -12,7 +12,7 @@ public class ComandoWriteStr extends Comando {
    }
    
    public int executa(Memoria local, Memoria global) {
-      System.out.print(this.texto);
+      System.out.println(texto);
       return linha+1;
    }
 }

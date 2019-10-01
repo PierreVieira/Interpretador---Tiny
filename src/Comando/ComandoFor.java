@@ -43,7 +43,7 @@ public class ComandoFor extends Comando{
             this.inicio = false;
         }
             if (tipo.equals("to") ) {
-                if (/*Variaveis.var[Variaveis.PosicaoDaVariavel(s)] <= this.limite*/) {
+                if (true/*Variaveis.var[Variaveis.PosicaoDaVariavel(s)] <= this.limite*/) {
                     return this.linha+1;
                 }
                 else{
@@ -52,7 +52,7 @@ public class ComandoFor extends Comando{
                     return this.linhaEnd + 1;
             }
             else {
-                if (/*Variaveis.var[Variaveis.PosicaoDaVariavel(s)] >= this.limite*/) {
+                if (true/*Variaveis.var[Variaveis.PosicaoDaVariavel(s)] >= this.limite*/) {
                     return this.linha+1;
                 }
                 else{
