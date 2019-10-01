@@ -1,5 +1,7 @@
 package Expressao;
 
+import Variavel.Memoria;
+
 public class ExpConstante extends Expressao{
 
     double valor;
@@ -8,7 +10,7 @@ public class ExpConstante extends Expressao{
         this.valor= valor;
     }
 
-    public double avalia() {
+    public double avalia(Memoria local, Memoria global) {
 
         return valor;
     }

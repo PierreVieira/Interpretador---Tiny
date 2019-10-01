@@ -19,7 +19,7 @@ public class ComandoIf extends Comando implements Condicao {
     }
 
     public int executa(Memoria local, Memoria global) {
-    double v = exp.avalia();
+    double v = exp.avalia(local, global);
         if(v == 1){
            return linha+1;
         }

@@ -16,9 +16,9 @@ public class ComandoAtrib extends Comando {
 
     public int executa(Memoria local, Memoria global) {
         if(local.var[variavel - 97] != -1){
-            local.var[variavel - 97] = this.exp.avalia();
+            local.var[variavel - 97] = this.exp.avalia(local,global);
         }else if(global.var[variavel -97] != -1){
-            global.var[variavel - 97] = this.exp.avalia();
+            global.var[variavel - 97] = this.exp.avalia(local,global);
         }
         return linha+1;
     }

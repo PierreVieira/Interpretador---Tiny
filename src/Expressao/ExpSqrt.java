@@ -11,7 +11,7 @@ public class ExpSqrt extends Expressao{
       //  System.out.println(this.sqrt);
     }
 
-    public double avalia() {
+    public double avalia(Memoria local, Memoria global) {
 //        int posicao_variavel;
 //        double raiz, oq_vai_pra_raiz;
 //        if("0123456789".contains(sqrt)){

@@ -14,13 +14,13 @@ public class ExpBinaria extends Expressao{
         this.exp2= exp2;
     }
 
-    public double avalia() {
+    public double avalia(Memoria local, Memoria global) {
         double v, CMD1, CMD2;
         //Tive que fazer uma gambiarra mandando o 1 pro 2 e o 2 pro 1 pra poder funcionar
         cmd2 = (Expressao) exp1;
         cmd1 = (Expressao) exp2;
-        CMD1 = cmd1.avalia();
-        CMD2 = cmd2.avalia();
+        CMD1 = cmd1.avalia(local, global);
+        CMD2 = cmd2.avalia(local, global);
         switch(this.op){
             case "+":
                 v = CMD1 + CMD2; break;

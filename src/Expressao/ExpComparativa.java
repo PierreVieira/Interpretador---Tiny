@@ -16,7 +16,7 @@ public class ExpComparativa extends Expressao{
         this.exp2= exp2;
     }
 
-    public double avalia() {
+    public double avalia(Memoria local, Memoria global) {
         boolean v = false;
         double valor = FALSE;
         //Tive que fazer uma gambiarra mandando o 1 pro 2 e o 2 pro 1 pra poder funcionar
@@ -24,17 +24,17 @@ public class ExpComparativa extends Expressao{
         opr1 = (Expressao) exp2;
         switch(this.op){
             case "<":
-                v = opr1.avalia() < opr2.avalia(); break;
+                v = opr1.avalia(local,global) < opr2.avalia(local,global); break;
             case ">":
-                v = opr1.avalia() > opr2.avalia(); break;
+                v = opr1.avalia(local,global) > opr2.avalia(local,global); break;
             case "<=":
-                v = opr1.avalia() <= opr2.avalia(); break;
+                v = opr1.avalia(local,global) <= opr2.avalia(local,global); break;
             case ">=":
-                v = opr1.avalia() >= opr2.avalia(); break;
+                v = opr1.avalia(local,global) >= opr2.avalia(local,global); break;
             case "<>":
-                v = opr1.avalia() != opr2.avalia(); break;
+                v = opr1.avalia(local,global) != opr2.avalia(local,global); break;
             case "=":
-                v = opr1.avalia() == opr2.avalia(); break;
+                v = opr1.avalia(local,global) == opr2.avalia(local,global); break;
             default:
                 System.out.println("Sabia que n ia dar certo!!!");
         }

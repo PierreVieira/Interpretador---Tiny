@@ -17,7 +17,7 @@ public class ComandoWhile extends Comando{
     }
 
     public int executa(Memoria local, Memoria global) {
-        double v = exp.avalia();
+        double v = exp.avalia(local,global);
         if(v == 1){
             return this.linha+1;
         }

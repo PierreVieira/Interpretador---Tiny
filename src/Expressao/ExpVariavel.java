@@ -10,7 +10,7 @@ public class ExpVariavel extends Expressao{
         variavel= nomevar;
     }
 
-    public double avalia() {
+    public double avalia(Memoria local, Memoria global) {
         String s = "";
         s += this.variavel;
         //return Variaveis.var[Variaveis.PosicaoDaVariavel(s)];

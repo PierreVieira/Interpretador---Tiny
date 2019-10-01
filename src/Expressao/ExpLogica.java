@@ -16,7 +16,7 @@ public class ExpLogica extends Expressao{
         this.exp2= exp2;
     }
 
-    public double avalia() {
+    public double avalia(Memoria local, Memoria global) {
         boolean v = false,
                 opr1B = false,
                 opr2B = false;
@@ -24,10 +24,10 @@ public class ExpLogica extends Expressao{
     //Tive que fazer uma gambiarra mandando o 1 pro 2 e o 2 pro 1 pra poder funcionar
         opr2 = (Expressao) exp2;
         opr1 = (Expressao) exp1;
-        if(opr1.avalia() == 1){
+        if(opr1.avalia(local,global) == 1){
             opr1B = true;
         }
-        if(opr2.avalia() == 1){
+        if(opr2.avalia(local,global) == 1){
             opr2B = true;
         }
         switch(this.op){
