@@ -11,21 +11,21 @@ public class ComandoCall extends Comando {
     int tamanho;
 
     public ComandoCall(int lin, Procedimento proc, Expressao [] a, int tam ) {
-
+        this.linha = lin;
+        this.procedimento = proc;
+        this.arg = a;
+        this.tamanho = tam;
     }
 
     public int executa( Memoria local, Memoria global) {
-
         double [] argumentos = new double[this.tamanho];
         int i= 0;
 
-        while( this.arg[i] != null ){
-            //preencher o vetor de argumentos
+        while(this.arg[i] != null){
+            argumentos[i] = arg[i].avalia(local, global);
             i++;
         }
-
-        this.procedimento.executa( argumentos );
-
+        this.procedimento.executa(argumentos);
         return linha+1;
     }
 }

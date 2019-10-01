@@ -37,8 +37,9 @@ public class Procedimento {
     public void executa(double [] argumentos) {
         Memoria local = new Memoria(); 				// variaveis local
         char var;
+        int i, posicao;
         if(variaveisLocal != null ){// adiciona variaveis locais na memoria local
-            for(int i = 0, posicao; variaveisLocal[i] != null; i++){
+            for(i = 0; variaveisLocal[i] != null; i++){
                 var = variaveisLocal[i].charAt(0);
                 posicao = var - 97;
                 local.var[posicao] = argumentos[i];

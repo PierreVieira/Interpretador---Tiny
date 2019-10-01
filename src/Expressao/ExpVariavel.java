@@ -11,10 +11,12 @@ public class ExpVariavel extends Expressao{
     }
 
     public double avalia(Memoria local, Memoria global) {
-        String s = "";
-        s += this.variavel;
-        //return Variaveis.var[Variaveis.PosicaoDaVariavel(s)];
-        return 1;
+        if(local.var[variavel - 97] != -1){
+            return local.var[variavel-97];
+        }else if(global.var[variavel - 97] != -1){
+            return global.var[variavel-97];
+        }
+        return -1;
     }
 
 }

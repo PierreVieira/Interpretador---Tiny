@@ -6,7 +6,7 @@ proc main()
   read(y);
   writeVar(x);
   writeVar(y);
-  z:= x + y;
+  z:= x < y or x = y;
   writeVar(z);
 endproc
 

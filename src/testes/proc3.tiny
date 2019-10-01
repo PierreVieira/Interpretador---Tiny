@@ -1,7 +1,8 @@
 global z;
 
-proc soma( a, b )
+proc soma(a, b)
 	z:= a + b;
+	writeStr("Entrei na soma kkkkj");
 endproc
 
 proc main()
@@ -10,7 +11,7 @@ proc main()
   read(y);
   writeVar(x);
   writeVar(y);
-  call soma( x, y );
+  call soma(x, y);
   writeVar(z);
 endproc
 
