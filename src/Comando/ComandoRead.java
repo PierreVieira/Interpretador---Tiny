@@ -17,9 +17,9 @@ public class ComandoRead extends Comando {
       float variavel;
       variavel = teclado.nextFloat();
       char pos_char = this.name_variavel.charAt(0);
-      if(local.var[pos_char - 97] != -1){
+      if(local.var[pos_char - 97] != Double.NEGATIVE_INFINITY){
          local.var[pos_char - 97] = variavel;
-      }else if(global.var[pos_char -97] != -1){
+      }else if(global.var[pos_char -97] != Double.NEGATIVE_INFINITY){
          global.var[pos_char - 97] = variavel;
       }
       return linha+1;

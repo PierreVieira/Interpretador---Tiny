@@ -7,7 +7,7 @@ public class Memoria{
     public Memoria(){
         var = new double[26];
         for (int i =0; i<26; i++) {
-            var[i] = -1;
+            var[i] = Double.NEGATIVE_INFINITY;
         }
     }
 

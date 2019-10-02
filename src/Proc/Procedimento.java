@@ -46,6 +46,13 @@ public class Procedimento {
             for(i = 0; variaveisLocal[i] != null; i++){
                 var = variaveisLocal[i].charAt(0);
                 posicao = var - 97;
+                local.var[posicao] = 0;
+            }
+        }
+        else if(parametros != null){
+            for(i = 0; parametros[i]!= null; i++){
+                var = parametros[i].charAt(0);
+                posicao = var - 97;
                 local.var[posicao] = argumentos[i];
             }
         }

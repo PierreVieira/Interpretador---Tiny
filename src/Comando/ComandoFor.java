@@ -39,11 +39,11 @@ public class ComandoFor extends Comando{
         this.limite = exp.avalia(local,global);
         String s = ""+this.variavel;
         if(inicio){
-            //Variaveis.var[Variaveis.PosicaoDaVariavel(s)] = Double.parseDouble(varValor);
+            local.var[this.variavel - 97] = Double.parseDouble(varValor);
             this.inicio = false;
         }
             if (tipo.equals("to") ) {
-                if (true/*Variaveis.var[Variaveis.PosicaoDaVariavel(s)] <= this.limite*/) {
+                if (local.var[this.variavel - 97] <= this.limite) {
                     return this.linha+1;
                 }
                 else{
@@ -52,7 +52,7 @@ public class ComandoFor extends Comando{
                     return this.linhaEnd + 1;
             }
             else {
-                if (true/*Variaveis.var[Variaveis.PosicaoDaVariavel(s)] >= this.limite*/) {
+                if (local.var[this.variavel - 97] >= this.limite) {
                     return this.linha+1;
                 }
                 else{
