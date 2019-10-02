@@ -23,9 +23,9 @@ endproc
 
 proc main()
   local x,y;
-  writeStr("x=")
+  writeStr("x = ")
   read(x);
-  writeStr("y=")
+  writeStr("y = ")
   read(y);
   call imprime_asteriscos(x);
   call imprime_dolar(y);

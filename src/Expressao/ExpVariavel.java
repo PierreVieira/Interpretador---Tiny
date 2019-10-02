@@ -11,9 +11,9 @@ public class ExpVariavel extends Expressao{
     }
 
     public double avalia(Memoria local, Memoria global) {
-        if(local.var[variavel - 97] != -1){
+        if(local.var[variavel - 97] != Double.NEGATIVE_INFINITY){
             return local.var[variavel-97];
-        }else if(global.var[variavel - 97] != -1){
+        }else if(global.var[variavel - 97] != Double.NEGATIVE_INFINITY){
             return global.var[variavel-97];
         }
         return -1;

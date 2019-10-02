@@ -36,7 +36,7 @@ public class ComandoFor extends Comando{
     }
 
     public int executa(Memoria local, Memoria global) {
-        this.limite = exp.avalia(local,global);
+        this.limite = this.exp.avalia(local, global);
         int posicao = this.variavel - 97;
         if(inicio){
             local.var[posicao] = Double.parseDouble(varValor);
