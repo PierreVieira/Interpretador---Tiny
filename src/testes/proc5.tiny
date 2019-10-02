@@ -2,7 +2,6 @@ global z;
 
 proc imprime_asteriscos(n)
   local i;
-  writeStr("Estou na porcaria do procedimento")
   for i:= 1 to n do
     writeStr("*")
   endfor

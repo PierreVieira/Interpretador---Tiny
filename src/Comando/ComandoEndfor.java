@@ -16,12 +16,11 @@ public class ComandoEndfor extends Comando {
     }
 
     public int executa(Memoria local, Memoria global) {
-        String s = ""+this.variavel;
         if(this.tipo.equals("to")){
-            //Variaveis.var[Variaveis.PosicaoDaVariavel(s)]++;
+            local.var[variavel - 97]++;
         }
         else{
-            //Variaveis.var[Variaveis.PosicaoDaVariavel(s)]--;
+            local.var[variavel - 97]--;
         }
         return this.linhaFor;
     }
