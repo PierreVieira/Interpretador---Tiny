@@ -37,28 +37,28 @@ public class ComandoFor extends Comando{
 
     public int executa(Memoria local, Memoria global) {
         this.limite = exp.avalia(local,global);
-        String s = ""+this.variavel;
+        int posicao = this.variavel - 97;
         if(inicio){
-            local.var[this.variavel - 97] = Double.parseDouble(varValor);
+            local.var[posicao] = Double.parseDouble(varValor);
             this.inicio = false;
         }
-            if (tipo.equals("to") ) {
-                if (local.var[this.variavel - 97] <= this.limite) {
-                    return this.linha+1;
-                }
-                else{
-                    this.inicio = true;
-                }
-                    return this.linhaEnd + 1;
+        if (tipo.equals("to") ) {
+            if (local.var[posicao] <= this.limite) {
+                return this.linha+1;
             }
-            else {
-                if (local.var[this.variavel - 97] >= this.limite) {
-                    return this.linha+1;
-                }
-                else{
-                    this.inicio = true;
-                }
+            else{
+                this.inicio = true;
+            }
                 return this.linhaEnd + 1;
+        }
+        else {
+            if (local.var[posicao] >= this.limite) {
+                return this.linha+1;
             }
+            else{
+                this.inicio = true;
+            }
+            return this.linhaEnd + 1;
+        }
     }
 }
