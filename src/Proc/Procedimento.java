@@ -22,8 +22,12 @@ public class Procedimento {
     }
 
     public static void setVariaveisGlobal( String [] vG ){
-        char var = vG[0].charAt(0);
-        global.var[var - 97] = 0;//A variavel nessa posição é tida como global
+        char var;
+        for(int i = 0, posicao; vG[i] != null; ++i){
+            var = vG[i].charAt(0);
+            posicao = var - 97;
+            global.var[posicao] = 0;
+        }
     }
 
     public void setVariaveisLocal( String [] vL ){
